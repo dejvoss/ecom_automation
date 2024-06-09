@@ -1,0 +1,10 @@
+.venv
+.venv/.
+.venv/
+data_files/.
+data_files/
+.env
+hisorical_db.db
+__pycache__/
+.idea
+.idea/
