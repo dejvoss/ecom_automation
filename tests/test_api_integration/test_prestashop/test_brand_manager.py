@@ -1,5 +1,6 @@
 import unittest
 
+from apis_integration.presta_shop.managers.base_api import PrestashopClient
 from apis_integration.presta_shop.managers.brand_manager import BrandManager
 import settings
 
@@ -7,10 +8,13 @@ import settings
 # @unittest.skip("Skip for now as it works and testing creates records in database.")
 class TestBrandManagerRealAPI(unittest.TestCase):
     def setUp(self):
-        self.brand_manager = BrandManager(
+        self.client = PrestashopClient(
             settings.PRESTASHOP_API_URL,
             api_key=settings.PRESTASHOP_API_TOKEN,
             api_secret=settings.PRESTASHOP_API_SECRET,
+        )
+        self.brand_manager = BrandManager(
+            self.client
         )
 
     def test_get_or_create(self):

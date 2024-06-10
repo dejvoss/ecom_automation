@@ -1,14 +1,12 @@
 from xml.etree.ElementTree import SubElement
 
 from apis_integration.presta_shop.managers.base_api import (
-    PrestashopGetter,
-    PrestashopDeleter,
-    PrestashopPoster,
+    BaseManager,
 )
 from apis_integration.presta_shop import utils
 
 
-class BrandManager(PrestashopGetter, PrestashopDeleter, PrestashopPoster):
+class BrandManager(BaseManager):
 
     def get_or_create(self, data: dict):
         existing_brand_id = self.get_id_by_name(data["name"])

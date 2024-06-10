@@ -1,14 +1,14 @@
 from xml.etree.ElementTree import SubElement
 
 from apis_integration.presta_shop.managers.base_api import (
-    PrestashopGetter,
+    BaseManager,
     PrestashopPoster,
 )
 
 from apis_integration.presta_shop import utils
 
 
-class FeaturesManager(PrestashopPoster, PrestashopGetter):
+class FeaturesManager(BaseManager):
     def get_or_create_feature_value_pair(self, feature_name, feature_value):
         feature_id = self.get_or_create_feature(feature_name)
         feature_value_id = self.get_or_create_feature_value(feature_value, feature_id)

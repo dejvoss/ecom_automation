@@ -1,15 +1,19 @@
 import unittest
 
 from apis_integration.presta_shop.managers.attributes_manager import AttributeManager
+from apis_integration.presta_shop.managers.base_api import PrestashopClient
 import settings
 
 
 class TestAttributeManager(unittest.TestCase):
     def setUp(self):
-        self.attribute_manager = AttributeManager(
+        self.client = PrestashopClient(
             settings.PRESTASHOP_API_URL,
             api_key=settings.PRESTASHOP_API_TOKEN,
             api_secret=settings.PRESTASHOP_API_SECRET,
+        )
+        self.attribute_manager = AttributeManager(
+            self.client
         )
 
     def test_get_or_create_attribute_id(self):

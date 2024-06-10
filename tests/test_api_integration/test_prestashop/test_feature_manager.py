@@ -1,5 +1,6 @@
 import unittest
 
+from apis_integration.presta_shop.managers.base_api import PrestashopClient
 from apis_integration.presta_shop.managers.feature_manager import FeaturesManager
 import settings
 
@@ -7,10 +8,13 @@ import settings
 # @unittest.skip("Skip for now as it works and testing creates records in database.")
 class TestFeaturesManagerRealAPI(unittest.TestCase):
     def setUp(self):
-        self.brand_manager = FeaturesManager(
+        self.client = PrestashopClient(
             settings.PRESTASHOP_API_URL,
             api_key=settings.PRESTASHOP_API_TOKEN,
             api_secret=settings.PRESTASHOP_API_SECRET,
+        )
+        self.brand_manager = FeaturesManager(
+            self.client
         )
 
     def test_getting_correct_feature_with_value(self):

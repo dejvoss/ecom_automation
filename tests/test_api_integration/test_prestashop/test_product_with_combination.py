@@ -1,5 +1,6 @@
 import unittest
 
+from apis_integration.presta_shop.managers.base_api import PrestashopClient
 from apis_integration.presta_shop.managers.product_manager import ProductManager
 import settings
 
@@ -7,10 +8,13 @@ import settings
 # @unittest.skip("Skip for now as it works and testing creates records in database.")
 class TestCreationProductWithCombination(unittest.TestCase):
     def setUp(self):
-        self.product_manager = ProductManager(
+        self.client = PrestashopClient(
             settings.PRESTASHOP_API_URL,
             api_key=settings.PRESTASHOP_API_TOKEN,
             api_secret=settings.PRESTASHOP_API_SECRET,
+        )
+        self.product_manager = ProductManager(
+            self.client
         )
 
     def test_get_or_create(self):

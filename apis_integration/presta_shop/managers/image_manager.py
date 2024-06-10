@@ -1,11 +1,11 @@
 import os.path
 import requests
 
-from apis_integration.presta_shop.managers.base_api import PrestashopFilePoster
+from apis_integration.presta_shop.managers.base_api import BaseManager
 import settings
 
 
-class ImageManager(PrestashopFilePoster):
+class ImageManager(BaseManager):
     def upload_image(self, product_id, image):
         url = f"/images/products/{product_id}"
         if os.path.isfile(image):
@@ -32,7 +32,7 @@ class ImageManager(PrestashopFilePoster):
         elif image.startswith("http"):
             img_response = requests.get(image).content
             files = {"image": (image, img_response, "image/jpeg")}
-            response = self.make_post_call(url, files=files)
+            response = self.make_post_files_call(url, files=files)
             if response.status_code == 200:
                 print("Image uploaded successfully")
                 return response.status_code
@@ -46,7 +46,7 @@ class ImageManager(PrestashopFilePoster):
         with open(image_file, "rb") as file:
             image_data = file.read()
         files = {"image": (image_file, image_data, "image/jpeg")}
-        response = self.make_post_call(url, files=files)
+        response = self.make_post_files_call(url, files=files)
         if response.status_code == 200:
             print("Image uploaded successfully")
             return response.status_code

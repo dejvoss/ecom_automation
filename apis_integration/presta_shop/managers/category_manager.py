@@ -1,14 +1,12 @@
 from xml.etree.ElementTree import SubElement
 
 from apis_integration.presta_shop.managers.base_api import (
-    PrestashopGetter,
-    PrestashopDeleter,
-    PrestashopPoster,
+    BaseManager,
 )
 from apis_integration.presta_shop import utils
 
 
-class CategoryManager(PrestashopGetter, PrestashopDeleter, PrestashopPoster):
+class CategoryManager(BaseManager):
 
     def get_or_create(self, data: dict):
         existing_category_id = self.get_category_id_by_name(data["name"])

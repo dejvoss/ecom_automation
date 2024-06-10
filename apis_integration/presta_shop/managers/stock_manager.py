@@ -1,13 +1,10 @@
 from xml.etree.ElementTree import SubElement
 
-from apis_integration.presta_shop.managers.base_api import (
-    PrestashopGetter,
-    PrestashopPatcher,
-)
+from apis_integration.presta_shop.managers.base_api import BaseManager
 from apis_integration.presta_shop import utils
 
 
-class StockManager(PrestashopGetter, PrestashopPatcher):
+class StockManager(BaseManager):
     def update_stock(self, product_id, stock_qty):
         stock_availables_id = self.__get_stock_availability_id_for_product(product_id)
         prestashop = utils.create_prestashop_base_xml()

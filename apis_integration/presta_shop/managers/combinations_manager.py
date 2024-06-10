@@ -4,7 +4,7 @@ from apis_integration.presta_shop import utils
 from apis_integration.presta_shop.managers import base_api
 
 
-class CombinationsManager(base_api.PrestashopPoster, base_api.PrestashopGetter):
+class CombinationsManager(base_api.BaseManager):
 
     def get_or_create_combination(self, data: dict):
         combination_id = self.get_combination_id_by(

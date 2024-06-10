@@ -1,6 +1,7 @@
 import unittest
 import os
 
+from apis_integration.presta_shop.managers.base_api import PrestashopClient
 from apis_integration.presta_shop.managers.image_manager import (
     ImageManager,
     ImageNotAllowedError,
@@ -11,10 +12,13 @@ import settings
 @unittest.skip("Skip for now as it works and testing creates records in database.")
 class TestImageManagerRealAPI(unittest.TestCase):
     def setUp(self):
-        self.image_manager = ImageManager(
+        self.client = PrestashopClient(
             settings.PRESTASHOP_API_URL,
             api_key=settings.PRESTASHOP_API_TOKEN,
             api_secret=settings.PRESTASHOP_API_SECRET,
+        )
+        self.image_manager = ImageManager(
+            self.client
         )
         self.img_dir = os.path.join(settings.BASE_DIR, "media", "product_images")
 

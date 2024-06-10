@@ -5,7 +5,7 @@ from apis_integration.presta_shop.managers import base_api
 from apis_integration.presta_shop import utils
 
 
-class AttributeManager(base_api.PrestashopGetter, base_api.PrestashopPoster):
+class AttributeManager(base_api.BaseManager):
 
     def get_id_product_attribute_value(
         self, attribute_name, attribute_type, attribute_value

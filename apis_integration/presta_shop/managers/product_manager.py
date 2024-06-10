@@ -1,13 +1,13 @@
 from xml.etree.ElementTree import SubElement
 
 from apis_integration.presta_shop.managers.base_api import (
-    PrestashopPoster,
+    BaseManager,
     PrestashopGetter,
 )
 from apis_integration.presta_shop import utils
 
 
-class ProductManager(PrestashopPoster, PrestashopGetter):
+class ProductManager(BaseManager):
 
     def get_or_create(self, data: dict):
         existing_product_id = self.get_product_id_by(name=data["name"])

@@ -1,5 +1,6 @@
 import unittest
 
+from apis_integration.presta_shop.managers.base_api import PrestashopClient
 from apis_integration.presta_shop.managers.combinations_manager import (
     CombinationsManager,
 )
@@ -8,10 +9,13 @@ import settings
 
 class TestAttributeManager(unittest.TestCase):
     def setUp(self):
-        self.attribute_manager = CombinationsManager(
+        self.client = PrestashopClient(
             settings.PRESTASHOP_API_URL,
             api_key=settings.PRESTASHOP_API_TOKEN,
             api_secret=settings.PRESTASHOP_API_SECRET,
+        )
+        self.attribute_manager = CombinationsManager(
+            self.client
         )
         self.data = {
             "id_product": 26,
