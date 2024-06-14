@@ -71,3 +71,4 @@ class TestServiceProductCreator(TestCase):
                 "connection": "wifi",
             },
         }
+
