@@ -1,10 +1,10 @@
 from xml.etree.ElementTree import SubElement
 
 from apis_integration.presta_shop import utils
-from apis_integration.presta_shop.managers import base_api
+from apis_integration.presta_shop.managers import BaseManager
 
 
-class CombinationsManager(base_api.BaseManager):
+class CombinationsManager(BaseManager):
 
     def get_or_create_combination(self, data: dict):
         combination_id = self.get_combination_id_by(

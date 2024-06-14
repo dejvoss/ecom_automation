@@ -1,9 +1,6 @@
 from xml.etree.ElementTree import SubElement
 
-from apis_integration.presta_shop.managers.base_api import (
-    BaseManager,
-    PrestashopGetter,
-)
+from apis_integration.presta_shop.managers.base_api import BaseManager
 from apis_integration.presta_shop import utils
 
 
@@ -66,7 +63,7 @@ class ProductManager(BaseManager):
         SubElement(product, "id_manufacturer").text = data["id_manufacturer"]
         SubElement(product, "id_supplier").text = data["id_supplier"]
         SubElement(product, "id_category_default").text = data["id_category_default"]
-        SubElement(product, "new").text = data["is_new"]
+        SubElement(product, "new").text = data["new"]
         SubElement(product, "id_default_combination").text = data[
             "id_default_combination"
         ]
@@ -82,7 +79,7 @@ class ProductManager(BaseManager):
         ]  # standard, combination, virtual
         SubElement(product, "price").text = data["price"]
         SubElement(product, "unit_price").text = data["unit_price"]
-        SubElement(product, "active").text = data["is_active"]
+        SubElement(product, "active").text = data["active"]
 
         utils.create_english_sub_element(product, "name", data["name"])
         utils.create_english_sub_element(product, "description", data["description"])
@@ -95,7 +92,7 @@ class ProductManager(BaseManager):
     def __add_associations_xml_sub_elements(product_element, data):
         associations = SubElement(product_element, "associations")
         categories = SubElement(associations, "categories")
-        for cat_id in data["category_id"]:
+        for cat_id in data["categories_id"]:
             category = SubElement(categories, "category")
             SubElement(category, "id").text = cat_id
         features = SubElement(associations, "product_features")

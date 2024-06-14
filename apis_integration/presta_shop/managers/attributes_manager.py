@@ -1,11 +1,11 @@
 from xml.etree.ElementTree import SubElement
 
-from apis_integration.presta_shop.managers import base_api
+from apis_integration.presta_shop.managers import BaseManager
 
 from apis_integration.presta_shop import utils
 
 
-class AttributeManager(base_api.BaseManager):
+class AttributeManager(BaseManager):
 
     def get_id_product_attribute_value(
         self, attribute_name, attribute_type, attribute_value

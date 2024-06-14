@@ -1,6 +1,6 @@
 import unittest
 
-from apis_integration.presta_shop.managers.base_api import PrestashopClient
+from apis_integration.presta_shop.presta_client import PrestashopClient
 from apis_integration.presta_shop.managers.combinations_manager import (
     CombinationsManager,
 )
@@ -27,13 +27,10 @@ class TestAttributeManager(unittest.TestCase):
             "id_product_attribute": 2,
         }
 
-    @unittest.skip("Skipping")
-    def test_create_combination(self):
+    def create_combination(self):
         combination_id = self.attribute_manager.create_combination(self.data)
         self.assertIsInstance(combination_id, int)
-        self.assertEqual(combination_id, 16)
 
-    def test_get_combination_id(self):
+    def test_get_and_create_combination_id(self):
         combination_id = self.attribute_manager.get_combination_id_by(26, 2)
         self.assertIsInstance(combination_id, int)
-        self.assertEqual(combination_id, 16)

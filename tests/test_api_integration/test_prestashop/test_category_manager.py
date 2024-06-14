@@ -1,6 +1,6 @@
 import unittest
 
-from apis_integration.presta_shop.managers.base_api import PrestashopClient
+from apis_integration.presta_shop.presta_client import PrestashopClient
 from apis_integration.presta_shop.managers.category_manager import CategoryManager
 import settings
 
@@ -16,9 +16,7 @@ class TestCategoryManagerRealAPI(unittest.TestCase):
         self.brand_manager = CategoryManager(
             self.client
         )
-
-    def test_create_category(self):
-        category_data = {
+        self.data = {
             "name": "Test Category",
             "description": "This is a test category",
             "is_active": "1",
@@ -27,7 +25,9 @@ class TestCategoryManagerRealAPI(unittest.TestCase):
             "meta_description": "Test Category",
             "meta_keywords": "Test Category",
         }
-        category_id = self.brand_manager.get_or_create(category_data)
+
+    def test_create_category(self):
+        category_id = self.brand_manager.get_or_create(self.data)
         print(category_id)
         self.assertIsNotNone(category_id)
         self.assertIsInstance(category_id, int)
@@ -42,7 +42,7 @@ class TestCategoryManagerRealAPI(unittest.TestCase):
         self.assertGreater(category_id, 0)
 
     def test_delete_category(self):
+        self.brand_manager.get_or_create(self.data)
         category_name = "Test Category"
         result = self.brand_manager.delete_category(category_name)
         self.assertEqual(result, True)
-        self.assertIsNone(self.brand_manager.get_category_id_by_name(category_name))

@@ -1,8 +1,6 @@
 from xml.etree.ElementTree import SubElement
 
-from apis_integration.presta_shop.managers.base_api import (
-    BaseManager,
-)
+from apis_integration.presta_shop.managers.base_api import BaseManager
 from apis_integration.presta_shop import utils
 
 
@@ -60,6 +58,7 @@ class CategoryManager(BaseManager):
 
     def delete_category(self, category_name):
         category_id = self.get_category_id_by_name(category_name)
+        print("CATEGORY ID: ", category_id)
         if category_id:
             response = self.make_delete_call(f"/categories/{category_id}")
             if response.status_code == 200:

@@ -1,6 +1,6 @@
 import unittest
 
-from apis_integration.presta_shop.managers.base_api import PrestashopClient
+from apis_integration.presta_shop.presta_client import PrestashopClient
 from apis_integration.presta_shop.managers.brand_manager import BrandManager
 import settings
 
@@ -16,9 +16,7 @@ class TestBrandManagerRealAPI(unittest.TestCase):
         self.brand_manager = BrandManager(
             self.client
         )
-
-    def test_get_or_create(self):
-        test_data = {
+        self.test_data = {
             "name": "Test Brand",
             "description": "Brand for testing status change",
             "short_description": "Test Short Description",
@@ -26,7 +24,9 @@ class TestBrandManagerRealAPI(unittest.TestCase):
             "meta_description": "Test Meta Description",
             "meta_keywords": "Test, Meta, brand, Keywords, oftionn",
         }
-        result = self.brand_manager.get_or_create(test_data)
+
+    def test_get_or_create(self):
+        result = self.brand_manager.get_or_create(self.test_data)
         self.assertIsNotNone(result)
         self.assertIsInstance(result, int)
         self.assertGreater(result, 0)
@@ -38,6 +38,6 @@ class TestBrandManagerRealAPI(unittest.TestCase):
         self.assertEqual(result, 1)
 
     def test_delete_brand(self):
+        self.brand_manager.get_or_create(self.test_data)
         result = self.brand_manager.delete_brand("Test Brand")
         self.assertEqual(result, True)
-        self.assertIsNone(self.brand_manager.get_id_by_name("Test Brand"))

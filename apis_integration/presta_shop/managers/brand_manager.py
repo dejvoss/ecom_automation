@@ -1,8 +1,6 @@
 from xml.etree.ElementTree import SubElement
 
-from apis_integration.presta_shop.managers.base_api import (
-    BaseManager,
-)
+from apis_integration.presta_shop.managers.base_api import BaseManager
 from apis_integration.presta_shop import utils
 
 

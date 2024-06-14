@@ -1,6 +1,6 @@
 import unittest
 
-from apis_integration.presta_shop.managers.base_api import PrestashopClient
+from apis_integration.presta_shop.presta_client import PrestashopClient
 from apis_integration.presta_shop.managers.product_manager import ProductManager
 import settings
 
@@ -62,7 +62,7 @@ class TestProductManagerRealAPI(unittest.TestCase):
             "id_manufacturer": "1",
             "id_supplier": "0",
             "id_category_default": "3",
-            "is_new": "1",
+            "new": "1",
             "id_default_combination": "1",
             "id_tax_rules_group": "53",
             "type": "1",
@@ -74,14 +74,14 @@ class TestProductManagerRealAPI(unittest.TestCase):
             "product_type": "standard",
             "price": "23.45",
             "unit_price": "23.45",
-            "is_active": "0",
+            "active": "0",
             "name": "Test Product",
             "description": "Test Product",
             "short_description": "Test Product",
             "meta_title": "Test Product",
             "meta_description": "Test Product",
             "meta_keywords": "Test, Product, oftionn, Keywords",
-            "category_id": ["3", "198"],
+            "categories_id": ["3", "198"],
             "features": [
                 {"feature_id": "1", "value_id": "1"},
                 {"feature_id": "1", "value_id": "2"},

@@ -1,6 +1,6 @@
 import unittest
 
-from apis_integration.presta_shop.managers.base_api import PrestashopClient
+from apis_integration.presta_shop.presta_client import PrestashopClient
 from apis_integration.presta_shop.managers.feature_manager import FeaturesManager
 import settings
 
